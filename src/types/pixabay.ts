@@ -26,4 +26,5 @@ export type PixabayResponse = {
   total: number;
   totalHits: number;
   hits: PixabayImage[];
+  
 };
