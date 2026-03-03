@@ -20,11 +20,14 @@ const ui = initRender({ gallery, loader, loadMoreButton });
 searchForm.addEventListener("submit", onFormSubmit);
 loadMoreButton.addEventListener("click", onLoadMoreClick);
 
-async function onFormSubmit(event) {
+async function onFormSubmit(event: Event) {
   event.preventDefault();
-  const form = event.target;
+
+  const form = event.currentTarget as HTMLFormElement;
   const formData = new FormData(form);
-  query = formData.get("search-text").trim();
+
+  const value = formData.get("search-text");
+  query = (typeof value === "string" ? value : "").trim();
 
   if (query === "") {
     ui.showToast("Please enter a search query.");
